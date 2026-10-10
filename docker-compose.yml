@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=postgresql://admin:secretpassword@db:5432/salvatiperservire
+      - SMTP_SERVER=smtp.tuoprovider.it
+      - SMTP_PORT=587
+      - SMTP_USER=tua-email@tuodominio.it
+      - SMTP_PASSWORD=tua-password-segreta
+      - ADMIN_EMAIL=info@salvatiperservire.it
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=secretpassword
+      - POSTGRES_DB=salvatiperservire
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
