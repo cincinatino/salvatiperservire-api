@@ -35,8 +35,8 @@ def _invia_email(destinatario: str, oggetto: str, corpo_html: str):
         print(f"Email inviata con successo a {destinatario}")
     except Exception as e:
         print(f"Errore durante l'invio dell'email a {destinatario}: {e}")
+def invia_email_benvenuto(socio_email: str, socio_nome: str, socio_cognome: str):
 
-def invia_ email_benvenuto(socio_email: str, socio_nome: str, socio_cognome: str):
     """Invia l'email di benvenuto al nuovo socio."""
     oggetto = "Benvenuto in Salvati Per Servire ODV Onlus"
     corpo = f"""
