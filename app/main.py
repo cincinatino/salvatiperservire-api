@@ -4,6 +4,16 @@ from .database import engine, Base, get_db
 from .models import SocioModel
 from .schemas import SocioCreate
 from .email import invia_email_benvenuto, invia_notifica_admin
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+# Monta la cartella static
+#app.mount("/static", StaticFiles(directory="static"), name="static")
+
+#@app.get("/")
+#def read_root():
+#    return FileResponse("static/index.html")
+
 
 # Crea le tabelle nel database all'avvio
 Base.metadata.create_all(bind=engine)
@@ -12,7 +22,8 @@ app = FastAPI(title="Salvati Per Servire - WebApp", version="1.0.0")
 
 @app.get("/")
 def read_root():
-    return {"message": "API Backend di Salvati Per Servire ODV Onlus attiva e funzionante!"}
+    return FileResponse("static/index.html")
+#    return {"message": "API Backend di Salvati Per Servire ODV Onlus attiva e funzionante!"}
 
 @app.post("/api/soci/", status_code=201)
 def registra_socio(socio: SocioCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
