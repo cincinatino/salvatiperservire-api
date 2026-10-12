@@ -595,31 +595,65 @@
                 document.getElementById('err-accetta_statuto').classList.add('hidden');
             }
 
-            const payload = {
-                nome: document.getElementById('nome').value.trim(),
-                cognome: document.getElementById('cognome').value.trim(),
-                codice_fiscale: document.getElementById('codice_fiscale').value.trim().toUpperCase(),
-                sesso: document.getElementById('sesso').value,
-                data_nascita: document.getElementById('data_nascita').value,
-                luogo_nascita: document.getElementById('luogo_nascita').value.trim(),
-                provincia_nascita: document.getElementById('provincia_nascita') ? document.getElementById('provincia_nascita').value.trim().toUpperCase() : '',
-                indirizzo_residenza: document.getElementById('indirizzo_residenza') ? document.getElementById('indirizzo_residenza').value.trim() : document.getElementById('indirizzo').value.trim(),
-                citta_residenza: document.getElementById('citta_residenza') ? document.getElementById('citta_residenza').value.trim() : document.getElementById('citta_residenza').value.trim(),
-                cap_residenza: document.getElementById('cap_residenza') ? document.getElementById('cap_residenza').value.trim() : document.getElementById('cap').value.trim(),
-                provincia_residenza: document.getElementById('provincia_residenza') ? document.getElementById('provincia_residenza').value.trim().toUpperCase() : document.getElementById('provincia').value.trim().toUpperCase(),
-
-                // Campi richiesti dal backend emersi dalla validazione:
-                cellulare: document.getElementById('telefono').value.trim(),
-                chiesa_appartenenza: document.getElementById('chiesa_appartenenza') ? document.getElementById('chiesa_appartenenza').value.trim() : 'Non specificata',
-                chiesa_citta: document.getElementById('chiesa_citta') ? document.getElementById('chiesa_citta').value.trim() : 'Non specificata',
-
-                email: document.getElementById('email').value.trim(),
-
-                // Consensi e statuto
-                accetta_statuto: document.getElementById('accetta_statuto') ? document.getElementById('accetta_statuto').checked : true,
-                consenso_dati_personali: document.getElementById('consenso_dati_personali') ? document.getElementById('consenso_dati_personali').checked : true,
-                consenso_foto: document.getElementById('consenso_foto') ? document.getElementById('consenso_foto').checked : false
+            const getVal = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.value.trim() : "";
             };
+
+            const getCheck = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.checked : false;
+            };
+
+            const payload = {
+                nome: getVal('nome'),
+                cognome: getVal('cognome'),
+                codice_fiscale: getVal('codice_fiscale').toUpperCase(),
+                sesso: getVal('sesso'),
+                data_nascita: getVal('data_nascita'),
+                luogo_nascita: getVal('luogo_nascita'),
+                provincia_nascita: getVal('provincia_nascita').toUpperCase(),
+
+                // Mappatura sicura dei campi di residenza (usa il campo specifico o un fallback)
+                indirizzo_residenza: getVal('indirizzo_residenza') || getVal('indirizzo'),
+                citta_residenza: getVal('citta_residenza') || getVal('citta'),
+                cap_residenza: getVal('cap_residenza') || getVal('cap'),
+                provincia_residenza: (getVal('provincia_residenza') || getVal('provincia')).toUpperCase(),
+
+                cellulare: getVal('telefono'),
+                chiesa_appartenenza: getVal('chiesa_appartenenza') || "Non specificata",
+                chiesa_citta: getVal('chiesa_citta') || "Non specificata",
+                email: getVal('email'),
+
+                accetta_statuto: getCheck('accetta_statuto') || getCheck('adesione_statuto') || true,
+                consenso_dati_personali: getCheck('consenso_dati_personali') || getCheck('consenso_privacy') || true,
+                consenso_foto: getCheck('consenso_foto')
+            };
+            /*     const payload = {
+                     nome: document.getElementById('nome').value.trim(),
+                     cognome: document.getElementById('cognome').value.trim(),
+                     codice_fiscale: document.getElementById('codice_fiscale').value.trim().toUpperCase(),
+                     sesso: document.getElementById('sesso').value,
+                     data_nascita: document.getElementById('data_nascita').value,
+                     luogo_nascita: document.getElementById('luogo_nascita').value.trim(),
+                     provincia_nascita: document.getElementById('provincia_nascita') ? document.getElementById('provincia_nascita').value.trim().toUpperCase() : '',
+                     indirizzo_residenza: document.getElementById('indirizzo_residenza') ? document.getElementById('indirizzo_residenza').value.trim() : document.getElementById('indirizzo').value.trim(),
+                     citta_residenza: document.getElementById('citta_residenza') ? document.getElementById('citta_residenza').value.trim() : document.getElementById('citta_residenza').value.trim(),
+                     cap_residenza: document.getElementById('cap_residenza') ? document.getElementById('cap_residenza').value.trim() : document.getElementById('cap').value.trim(),
+                     provincia_residenza: document.getElementById('provincia_residenza') ? document.getElementById('provincia_residenza').value.trim().toUpperCase() : document.getElementById('provincia').value.trim().toUpperCase(),
+     
+                     // Campi richiesti dal backend emersi dalla validazione:
+                     cellulare: document.getElementById('telefono').value.trim(),
+                     chiesa_appartenenza: document.getElementById('chiesa_appartenenza') ? document.getElementById('chiesa_appartenenza').value.trim() : 'Non specificata',
+                     chiesa_citta: document.getElementById('chiesa_citta') ? document.getElementById('chiesa_citta').value.trim() : 'Non specificata',
+     
+                     email: document.getElementById('email').value.trim(),
+     
+                     // Consensi e statuto
+                     accetta_statuto: document.getElementById('accetta_statuto') ? document.getElementById('accetta_statuto').checked : true,
+                     consenso_dati_personali: document.getElementById('consenso_dati_personali') ? document.getElementById('consenso_dati_personali').checked : true,
+                     consenso_foto: document.getElementById('consenso_foto') ? document.getElementById('consenso_foto').checked : false
+                 }; */
 
             setLoading(true);
 
