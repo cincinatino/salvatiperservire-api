@@ -9,11 +9,11 @@ services:
       - .:/app
     environment:
       - DATABASE_URL=postgresql://admin:secretpassword@db:5432/salvatiperservire
-      - SMTP_SERVER=smtp.tuoprovider.it
+      - SMTP_SERVER=smtp.gmail.com
       - SMTP_PORT=587
-      - SMTP_USER=tua-email@tuodominio.it
-      - SMTP_PASSWORD=tua-password-segreta
-      - ADMIN_EMAIL=info@salvatiperservire.it
+      - SMTP_USER=john.vera1@gmail.com
+      - SMTP_PASSWORD=jqbi pdkd obsm bscq
+      - ADMIN_EMAIL=john.vera1@gmail.com
     depends_on:
       - db
 
