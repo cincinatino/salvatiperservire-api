@@ -602,13 +602,20 @@
                 sesso: document.getElementById('sesso').value,
                 data_nascita: document.getElementById('data_nascita').value,
                 luogo_nascita: document.getElementById('luogo_nascita').value.trim(),
-                indirizzo: document.getElementById('indirizzo').value.trim(),
-                citta: document.getElementById('citta').value.trim(),
-                cap: document.getElementById('cap').value.trim(),
-                provincia: document.getElementById('provincia').value.trim().toUpperCase(),
+                provincia_nascita: document.getElementById('provincia_nascita') ? document.getElementById('provincia_nascita').value.trim().toUpperCase() : '',
+                indirizzo_residenza: document.getElementById('indirizzo_residenza') ? document.getElementById('indirizzo_residenza').value.trim() : document.getElementById('indirizzo').value.trim(),
+                citta_residenza: document.getElementById('citta_residenza') ? document.getElementById('citta_residenza').value.trim() : document.getElementById('citta_residenza').value.trim(),
+                cap_residenza: document.getElementById('cap_residenza') ? document.getElementById('cap_residenza').value.trim() : document.getElementById('cap').value.trim(),
+                provincia_residenza: document.getElementById('provincia_residenza') ? document.getElementById('provincia_residenza').value.trim().toUpperCase() : document.getElementById('provincia').value.trim().toUpperCase(),
+
+                // Campi richiesti dal backend emersi dalla validazione:
+                cellulare: document.getElementById('telefono').value.trim(),
+                chiesa_appartenenza: document.getElementById('chiesa_appartenenza') ? document.getElementById('chiesa_appartenenza').value.trim() : 'Non specificata',
+                chiesa_citta: document.getElementById('chiesa_citta') ? document.getElementById('chiesa_citta').value.trim() : 'Non specificata',
+
                 email: document.getElementById('email').value.trim(),
-                telefono: document.getElementById('telefono').value.trim(),
-                // Allineati con i campi richiesti dal Pydantic Model del backend:
+
+                // Consensi e statuto
                 accetta_statuto: document.getElementById('accetta_statuto') ? document.getElementById('accetta_statuto').checked : true,
                 consenso_dati_personali: document.getElementById('consenso_dati_personali') ? document.getElementById('consenso_dati_personali').checked : true,
                 consenso_foto: document.getElementById('consenso_foto') ? document.getElementById('consenso_foto').checked : false
