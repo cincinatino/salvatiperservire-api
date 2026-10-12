@@ -4,7 +4,15 @@ from .database import engine, Base, get_db
 from .models import SocioModel
 from .schemas import SocioCreate
 from .email import invia_email_benvenuto, invia_notifica_admin
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
+# Monta la cartella static
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/")
+def read_root():
+    return FileResponse("static/index.html")
 # Crea le tabelle nel database all'avvio
 Base.metadata.create_all(bind=engine)
 
