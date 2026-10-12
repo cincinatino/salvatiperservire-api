@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it" class="h-full bg-slate-50">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -37,27 +38,45 @@
         }
     </script>
     <style>
-        .step-active { border-color: #0284c7; color: #0284c7; font-weight: 600; }
-        .step-completed { border-color: #10b981; color: #10b981; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .step-active {
+            border-color: #0284c7;
+            color: #0284c7;
+            font-weight: 600;
+        }
+
+        .step-completed {
+            border-color: #10b981;
+            color: #10b981;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
+
 <body class="h-full font-sans text-slate-800 antialiased flex flex-col min-h-screen">
 
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                <div
+                    class="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-md">
                     <i class="fa-solid fa-hand-holding-heart"></i>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-slate-900 tracking-tight">Salvati Per Servire</h1>
-                    <p class="text-xs font-semibold text-brand-600 tracking-wider uppercase">ODV ONLUS • Modulo Iscrizione</p>
+                    <p class="text-xs font-semibold text-brand-600 tracking-wider uppercase">ODV ONLUS • Modulo
+                        Iscrizione</p>
                 </div>
             </div>
-            
-            <div class="hidden sm:flex items-center space-x-2 bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-medium">
+
+            <div
+                class="hidden sm:flex items-center space-x-2 bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-medium">
                 <i class="fa-solid fa-circle-check text-emerald-600"></i>
                 <span>Quota Annua: <strong>€36,00</strong></span>
             </div>
@@ -65,36 +84,46 @@
     </header>
 
     <main class="flex-grow">
-        <section class="bg-gradient-to-b from-brand-50 to-slate-50 border-b border-slate-200 py-10 px-4 sm:px-6 lg:px-8">
+        <section
+            class="bg-gradient-to-b from-brand-50 to-slate-50 border-b border-slate-200 py-10 px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto text-center">
-                <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-brand-100 text-brand-800 mb-4">
+                <span
+                    class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-brand-100 text-brand-800 mb-4">
                     <i class="fa-solid fa-shield-halved text-brand-600"></i> Tesseramento Online GDPR Compliant
                 </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Diventa Socio dell'Associazione</h2>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Diventa Socio
+                    dell'Associazione</h2>
                 <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-                    Compila il modulo ufficiale per inoltrare la richiesta di tesseramento a Salvati Per Servire ODV Onlus. La procedura richiede solo pochi minuti.
+                    Compila il modulo ufficiale per inoltrare la richiesta di tesseramento a Salvati Per Servire ODV
+                    Onlus. La procedura richiede solo pochi minuti.
                 </p>
             </div>
         </section>
 
         <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-16">
             <div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 overflow-hidden">
-                
+
                 <!-- Progress Stepper Header -->
                 <div class="bg-slate-50 border-b border-slate-200 px-6 py-4">
                     <div class="flex justify-between items-center max-w-2xl mx-auto">
                         <div class="flex items-center space-x-2 step-item" id="step-indicator-1">
-                            <span class="w-8 h-8 rounded-full border-2 border-brand-600 text-brand-600 font-semibold text-sm flex items-center justify-center bg-white shadow-sm" id="step-num-1">1</span>
+                            <span
+                                class="w-8 h-8 rounded-full border-2 border-brand-600 text-brand-600 font-semibold text-sm flex items-center justify-center bg-white shadow-sm"
+                                id="step-num-1">1</span>
                             <span class="text-sm font-medium hidden md:inline text-slate-700">Anagrafica</span>
                         </div>
                         <div class="h-0.5 flex-1 mx-4 bg-slate-200"></div>
                         <div class="flex items-center space-x-2 step-item" id="step-indicator-2">
-                            <span class="w-8 h-8 rounded-full border-2 border-slate-300 text-slate-400 font-semibold text-sm flex items-center justify-center bg-white shadow-sm" id="step-num-2">2</span>
+                            <span
+                                class="w-8 h-8 rounded-full border-2 border-slate-300 text-slate-400 font-semibold text-sm flex items-center justify-center bg-white shadow-sm"
+                                id="step-num-2">2</span>
                             <span class="text-sm font-medium hidden md:inline text-slate-500">Contatti</span>
                         </div>
                         <div class="h-0.5 flex-1 mx-4 bg-slate-200"></div>
                         <div class="flex items-center space-x-2 step-item" id="step-indicator-3">
-                            <span class="w-8 h-8 rounded-full border-2 border-slate-300 text-slate-400 font-semibold text-sm flex items-center justify-center bg-white shadow-sm" id="step-num-3">3</span>
+                            <span
+                                class="w-8 h-8 rounded-full border-2 border-slate-300 text-slate-400 font-semibold text-sm flex items-center justify-center bg-white shadow-sm"
+                                id="step-num-3">3</span>
                             <span class="text-sm font-medium hidden md:inline text-slate-500">Adesione & Privacy</span>
                         </div>
                     </div>
@@ -109,31 +138,44 @@
                             <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
                                 <i class="fa-solid fa-user text-brand-600"></i> Dati Anagrafici e Personali
                             </h3>
-                            <p class="text-xs text-slate-500">Inserisci i tuoi dati personali corrispondenti al documento di identità.</p>
+                            <p class="text-xs text-slate-500">Inserisci i tuoi dati personali corrispondenti al
+                                documento di identità.</p>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="nome" class="block text-sm font-medium text-slate-700 mb-1">Nome <span class="text-rose-500">*</span></label>
-                                <input type="text" id="nome" name="nome" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm" placeholder="Es. Mario">
+                                <label for="nome" class="block text-sm font-medium text-slate-700 mb-1">Nome <span
+                                        class="text-rose-500">*</span></label>
+                                <input type="text" id="nome" name="nome" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm"
+                                    placeholder="Es. Mario">
                                 <span class="text-xs text-rose-500 hidden" id="err-nome">Inserisci il nome</span>
                             </div>
 
                             <div>
-                                <label for="cognome" class="block text-sm font-medium text-slate-700 mb-1">Cognome <span class="text-rose-500">*</span></label>
-                                <input type="text" id="cognome" name="cognome" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm" placeholder="Es. Rossi">
+                                <label for="cognome" class="block text-sm font-medium text-slate-700 mb-1">Cognome <span
+                                        class="text-rose-500">*</span></label>
+                                <input type="text" id="cognome" name="cognome" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm"
+                                    placeholder="Es. Rossi">
                                 <span class="text-xs text-rose-500 hidden" id="err-cognome">Inserisci il cognome</span>
                             </div>
 
                             <div>
-                                <label for="codice_fiscale" class="block text-sm font-medium text-slate-700 mb-1">Codice Fiscale <span class="text-rose-500">*</span></label>
-                                <input type="text" id="codice_fiscale" name="codice_fiscale" maxlength="16" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm uppercase font-mono" placeholder="RSSMRA80A01H501U">
-                                <span class="text-xs text-rose-500 hidden" id="err-codice_fiscale">Inserisci un Codice Fiscale valido di 16 caratteri</span>
+                                <label for="codice_fiscale" class="block text-sm font-medium text-slate-700 mb-1">Codice
+                                    Fiscale <span class="text-rose-500">*</span></label>
+                                <input type="text" id="codice_fiscale" name="codice_fiscale" maxlength="16" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm uppercase font-mono"
+                                    placeholder="RSSMRA80A01H501U">
+                                <span class="text-xs text-rose-500 hidden" id="err-codice_fiscale">Inserisci un Codice
+                                    Fiscale valido di 16 caratteri</span>
                             </div>
 
                             <div>
-                                <label for="sesso" class="block text-sm font-medium text-slate-700 mb-1">Sesso <span class="text-rose-500">*</span></label>
-                                <select id="sesso" name="sesso" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm bg-white">
+                                <label for="sesso" class="block text-sm font-medium text-slate-700 mb-1">Sesso <span
+                                        class="text-rose-500">*</span></label>
+                                <select id="sesso" name="sesso" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm bg-white">
                                     <option value="">Seleziona...</option>
                                     <option value="M">Maschile (M)</option>
                                     <option value="F">Femminile (F)</option>
@@ -142,20 +184,28 @@
                             </div>
 
                             <div>
-                                <label for="data_nascita" class="block text-sm font-medium text-slate-700 mb-1">Data di Nascita <span class="text-rose-500">*</span></label>
-                                <input type="date" id="data_nascita" name="data_nascita" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm">
-                                <span class="text-xs text-rose-500 hidden" id="err-data_nascita">Seleziona la data di nascita</span>
+                                <label for="data_nascita" class="block text-sm font-medium text-slate-700 mb-1">Data di
+                                    Nascita <span class="text-rose-500">*</span></label>
+                                <input type="date" id="data_nascita" name="data_nascita" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm">
+                                <span class="text-xs text-rose-500 hidden" id="err-data_nascita">Seleziona la data di
+                                    nascita</span>
                             </div>
 
                             <div>
-                                <label for="luogo_nascita" class="block text-sm font-medium text-slate-700 mb-1">Luogo di Nascita <span class="text-rose-500">*</span></label>
-                                <input type="text" id="luogo_nascita" name="luogo_nascita" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm" placeholder="Es. Roma (RM)">
-                                <span class="text-xs text-rose-500 hidden" id="err-luogo_nascita">Inserisci il luogo di nascita</span>
+                                <label for="luogo_nascita" class="block text-sm font-medium text-slate-700 mb-1">Luogo
+                                    di Nascita <span class="text-rose-500">*</span></label>
+                                <input type="text" id="luogo_nascita" name="luogo_nascita" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm"
+                                    placeholder="Es. Roma (RM)">
+                                <span class="text-xs text-rose-500 hidden" id="err-luogo_nascita">Inserisci il luogo di
+                                    nascita</span>
                             </div>
                         </div>
 
                         <div class="mt-8 flex justify-end">
-                            <button type="button" onclick="nextTab(2)" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-lg text-sm transition-colors flex items-center gap-2 shadow-sm">
+                            <button type="button" onclick="nextTab(2)"
+                                class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-lg text-sm transition-colors flex items-center gap-2 shadow-sm">
                                 Avanti: Contatti <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
                         </div>
@@ -165,55 +215,82 @@
                     <div class="tab-content" id="tab-2">
                         <div class="border-b border-slate-200 pb-4 mb-6">
                             <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                                <i class="fa-solid fa-location-dot text-brand-600"></i> Indirizzo di Residenza e Recapiti
+                                <i class="fa-solid fa-location-dot text-brand-600"></i> Indirizzo di Residenza e
+                                Recapiti
                             </h3>
-                            <p class="text-xs text-slate-500">I recapiti saranno utilizzati per le comunicazioni ufficiali della ONLUS.</p>
+                            <p class="text-xs text-slate-500">I recapiti saranno utilizzati per le comunicazioni
+                                ufficiali della ONLUS.</p>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="md:col-span-2">
-                                <label for="indirizzo" class="block text-sm font-medium text-slate-700 mb-1">Indirizzo di Residenza (Via/Piazza e N.) <span class="text-rose-500">*</span></label>
-                                <input type="text" id="indirizzo" name="indirizzo" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm" placeholder="Es. Via Roma 123">
-                                <span class="text-xs text-rose-500 hidden" id="err-indirizzo">Inserisci l'indirizzo</span>
+                                <label for="indirizzo" class="block text-sm font-medium text-slate-700 mb-1">Indirizzo
+                                    di Residenza (Via/Piazza e N.) <span class="text-rose-500">*</span></label>
+                                <input type="text" id="indirizzo" name="indirizzo" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm"
+                                    placeholder="Es. Via Roma 123">
+                                <span class="text-xs text-rose-500 hidden" id="err-indirizzo">Inserisci
+                                    l'indirizzo</span>
                             </div>
 
                             <div>
-                                <label for="citta" class="block text-sm font-medium text-slate-700 mb-1">Città <span class="text-rose-500">*</span></label>
-                                <input type="text" id="citta" name="citta" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm" placeholder="Es. Milano">
+                                <label for="citta" class="block text-sm font-medium text-slate-700 mb-1">Città <span
+                                        class="text-rose-500">*</span></label>
+                                <input type="text" id="citta" name="citta" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm"
+                                    placeholder="Es. Milano">
                                 <span class="text-xs text-rose-500 hidden" id="err-citta">Inserisci la città</span>
                             </div>
 
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label for="cap" class="block text-sm font-medium text-slate-700 mb-1">CAP <span class="text-rose-500">*</span></label>
-                                    <input type="text" id="cap" name="cap" maxlength="5" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm font-mono" placeholder="20100">
+                                    <label for="cap" class="block text-sm font-medium text-slate-700 mb-1">CAP <span
+                                            class="text-rose-500">*</span></label>
+                                    <input type="text" id="cap" name="cap" maxlength="5" required
+                                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm font-mono"
+                                        placeholder="20100">
                                     <span class="text-xs text-rose-500 hidden" id="err-cap">CAP non valido</span>
                                 </div>
                                 <div>
-                                    <label for="provincia" class="block text-sm font-medium text-slate-700 mb-1">Provincia <span class="text-rose-500">*</span></label>
-                                    <input type="text" id="provincia" name="provincia" maxlength="2" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm uppercase" placeholder="MI">
-                                    <span class="text-xs text-rose-500 hidden" id="err-provincia">Provincia mancante</span>
+                                    <label for="provincia"
+                                        class="block text-sm font-medium text-slate-700 mb-1">Provincia <span
+                                            class="text-rose-500">*</span></label>
+                                    <input type="text" id="provincia" name="provincia" maxlength="2" required
+                                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm uppercase"
+                                        placeholder="MI">
+                                    <span class="text-xs text-rose-500 hidden" id="err-provincia">Provincia
+                                        mancante</span>
                                 </div>
                             </div>
 
                             <div>
-                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Indirizzo Email <span class="text-rose-500">*</span></label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm" placeholder="nome@esempio.it">
-                                <span class="text-xs text-rose-500 hidden" id="err-email">Inserisci un'email valida</span>
+                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Indirizzo Email
+                                    <span class="text-rose-500">*</span></label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm"
+                                    placeholder="nome@esempio.it">
+                                <span class="text-xs text-rose-500 hidden" id="err-email">Inserisci un'email
+                                    valida</span>
                             </div>
 
                             <div>
-                                <label for="telefono" class="block text-sm font-medium text-slate-700 mb-1">Telefono / Cellulare <span class="text-rose-500">*</span></label>
-                                <input type="tel" id="telefono" name="telefono" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm" placeholder="Es. 3331234567">
-                                <span class="text-xs text-rose-500 hidden" id="err-telefono">Inserisci il numero di telefono</span>
+                                <label for="telefono" class="block text-sm font-medium text-slate-700 mb-1">Telefono /
+                                    Cellulare <span class="text-rose-500">*</span></label>
+                                <input type="tel" id="telefono" name="telefono" required
+                                    class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors text-sm"
+                                    placeholder="Es. 3331234567">
+                                <span class="text-xs text-rose-500 hidden" id="err-telefono">Inserisci il numero di
+                                    telefono</span>
                             </div>
                         </div>
 
                         <div class="mt-8 flex justify-between">
-                            <button type="button" onclick="nextTab(1)" class="px-5 py-2.5 border border-slate-300 text-slate-700 font-medium rounded-lg text-sm hover:bg-slate-50 transition-colors flex items-center gap-2">
+                            <button type="button" onclick="nextTab(1)"
+                                class="px-5 py-2.5 border border-slate-300 text-slate-700 font-medium rounded-lg text-sm hover:bg-slate-50 transition-colors flex items-center gap-2">
                                 <i class="fa-solid fa-arrow-left text-xs"></i> Indietro
                             </button>
-                            <button type="button" onclick="nextTab(3)" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-lg text-sm transition-colors flex items-center gap-2 shadow-sm">
+                            <button type="button" onclick="nextTab(3)"
+                                class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-lg text-sm transition-colors flex items-center gap-2 shadow-sm">
                                 Avanti: Adesione & Privacy <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
                         </div>
@@ -223,55 +300,80 @@
                     <div class="tab-content" id="tab-3">
                         <div class="border-b border-slate-200 pb-4 mb-6">
                             <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                                <i class="fa-solid fa-file-contract text-brand-600"></i> Dichiarazioni Associative e Consensi GDPR
+                                <i class="fa-solid fa-file-contract text-brand-600"></i> Dichiarazioni Associative e
+                                Consensi GDPR
                             </h3>
-                            <p class="text-xs text-slate-500">Conferma i requisiti statutari e la gestione della privacy ai sensi del Regolamento UE 2016/679.</p>
+                            <p class="text-xs text-slate-500">Conferma i requisiti statutari e la gestione della privacy
+                                ai sensi del Regolamento UE 2016/679.</p>
                         </div>
 
                         <!-- Informativa Dati / Statuto -->
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-2 mb-6 max-h-40 overflow-y-auto">
-                            <p class="font-semibold text-slate-800">Informativa sul Trattamento dei Dati Personali (Art. 13 Reg. UE 2016/679 - GDPR):</p>
-                            <p>I dati personali forniti saranno trattati dall'associazione <strong>Salvati Per Servire ODV Onlus</strong> esclusivamente per la gestione del rapporto associativo, l'adempimento degli obblighi di legge, e le attività previste dallo Statuto. L'interessato può in ogni momento esercitare i diritti di accesso, rettifica, cancellazione e limitazione scrivendo a <em>info@salvatiperservire.it</em>.</p>
-                            <p>Il versamento della quota associativa annua è fisso ed è pari a <strong>€36,00</strong>.</p>
+                        <div
+                            class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-2 mb-6 max-h-40 overflow-y-auto">
+                            <p class="font-semibold text-slate-800">Informativa sul Trattamento dei Dati Personali (Art.
+                                13 Reg. UE 2016/679 - GDPR):</p>
+                            <p>I dati personali forniti saranno trattati dall'associazione <strong>Salvati Per Servire
+                                    ODV Onlus</strong> esclusivamente per la gestione del rapporto associativo,
+                                l'adempimento degli obblighi di legge, e le attività previste dallo Statuto.
+                                L'interessato può in ogni momento esercitare i diritti di accesso, rettifica,
+                                cancellazione e limitazione scrivendo a <em>info@salvatiperservire.it</em>.</p>
+                            <p>Il versamento della quota associativa annua è fisso ed è pari a <strong>€36,00</strong>.
+                            </p>
                         </div>
 
                         <div class="space-y-4">
                             <!-- Mandatory Privacy Consensus -->
-                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50/50 flex items-start space-x-3">
-                                <input type="checkbox" id="consenso_privacy" name="consenso_privacy" required class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                            <div
+                                class="p-4 border border-slate-200 rounded-xl bg-slate-50/50 flex items-start space-x-3">
+                                <input type="checkbox" id="consenso_privacy" name="consenso_privacy" required
+                                    class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                                 <label for="consenso_privacy" class="text-sm text-slate-700 leading-snug">
-                                    <span class="font-semibold text-slate-900">Consenso Trattamento Dati Personali (Obbligatorio) *</span><br>
-                                    Dichiaro di aver letto l'Informativa Privacy e acconsento al trattamento dei miei dati personali necessari per il tesseramento e le attività dell'associazione.
+                                    <span class="font-semibold text-slate-900">Consenso Trattamento Dati Personali
+                                        (Obbligatorio) *</span><br>
+                                    Dichiaro di aver letto l'Informativa Privacy e acconsento al trattamento dei miei
+                                    dati personali necessari per il tesseramento e le attività dell'associazione.
                                 </label>
                             </div>
-                            <span class="text-xs text-rose-500 hidden block" id="err-consenso_privacy">È obbligatorio accettare l'Informativa Privacy</span>
+                            <span class="text-xs text-rose-500 hidden block" id="err-consenso_privacy">È obbligatorio
+                                accettare l'Informativa Privacy</span>
 
                             <!-- Optional Image Consent -->
-                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50/50 flex items-start space-x-3">
-                                <input type="checkbox" id="consenso_foto" name="consenso_foto" class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                            <div
+                                class="p-4 border border-slate-200 rounded-xl bg-slate-50/50 flex items-start space-x-3">
+                                <input type="checkbox" id="consenso_foto" name="consenso_foto"
+                                    class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                                 <label for="consenso_foto" class="text-sm text-slate-700 leading-snug">
-                                    <span class="font-semibold text-slate-900">Consenso Utilizzo Immagini / Fotografie (Opzionale)</span><br>
-                                    Autorizzo l'associazione al pubblicare foto o video istituzionali relativi alle attività svolte nei propri canali di comunicazione (Sito web, Social, Bollettini).
+                                    <span class="font-semibold text-slate-900">Consenso Utilizzo Immagini / Fotografie
+                                        (Opzionale)</span><br>
+                                    Autorizzo l'associazione al pubblicare foto o video istituzionali relativi alle
+                                    attività svolte nei propri canali di comunicazione (Sito web, Social, Bollettini).
                                 </label>
                             </div>
 
                             <!-- Statutory Requirements Confirmation -->
-                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50/50 flex items-start space-x-3">
-                                <input type="checkbox" id="accetta_statuto" name="accetta_statuto" required class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                            <div
+                                class="p-4 border border-slate-200 rounded-xl bg-slate-50/50 flex items-start space-x-3">
+                                <input type="checkbox" id="accetta_statuto" name="accetta_statuto" required
+                                    class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                                 <label for="accetta_statuto" class="text-sm text-slate-700 leading-snug">
-                                    <span class="font-semibold text-slate-900">Adesione allo Statuto e Versamento Quota *</span><br>
-                                    Mi impegno a rispettare lo Statuto dell'associazione Salvati Per Servire ODV Onlus e a versare la quota associativa annua di €36,00.
+                                    <span class="font-semibold text-slate-900">Adesione allo Statuto e Versamento Quota
+                                        *</span><br>
+                                    Mi impegno a rispettare lo Statuto dell'associazione Salvati Per Servire ODV Onlus e
+                                    a versare la quota associativa annua di €36,00.
                                 </label>
                             </div>
-                            <span class="text-xs text-rose-500 hidden block" id="err-accetta_statuto">È necessario accettare lo Statuto per completare l'iscrizione</span>
+                            <span class="text-xs text-rose-500 hidden block" id="err-accetta_statuto">È necessario
+                                accettare lo Statuto per completare l'iscrizione</span>
                         </div>
 
                         <div class="mt-8 flex justify-between">
-                            <button type="button" onclick="nextTab(2)" class="px-5 py-2.5 border border-slate-300 text-slate-700 font-medium rounded-lg text-sm hover:bg-slate-50 transition-colors flex items-center gap-2">
+                            <button type="button" onclick="nextTab(2)"
+                                class="px-5 py-2.5 border border-slate-300 text-slate-700 font-medium rounded-lg text-sm hover:bg-slate-50 transition-colors flex items-center gap-2">
                                 <i class="fa-solid fa-arrow-left text-xs"></i> Indietro
                             </button>
-                            
-                            <button type="submit" id="submit-btn" class="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-sm transition-all shadow-md hover:shadow-lg flex items-center gap-2">
+
+                            <button type="submit" id="submit-btn"
+                                class="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-sm transition-all shadow-md hover:shadow-lg flex items-center gap-2">
                                 <span id="submit-text">Invia Richiesta Iscrizione</span>
                                 <i class="fa-solid fa-paper-plane text-xs" id="submit-icon"></i>
                                 <i class="fa-solid fa-spinner fa-spin text-xs hidden" id="submit-spinner"></i>
@@ -285,14 +387,15 @@
 
         <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <h3 class="text-xl font-bold text-slate-900 mb-6 text-center">Domande Frequenti sul Tesseramento</h3>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                     <h4 class="font-semibold text-slate-900 flex items-center gap-2 mb-2">
                         <i class="fa-solid fa-credit-card text-brand-600"></i> Come versare la quota associativa?
                     </h4>
                     <p class="text-sm text-slate-600">
-                        Una volta inviata la richiesta di iscrizione, riceverai un'email di benvenuto contenente l'IBAN dell'associazione per effettuare il bonifico di €36,00.
+                        Una volta inviata la richiesta di iscrizione, riceverai un'email di benvenuto contenente l'IBAN
+                        dell'associazione per effettuare il bonifico di €36,00.
                     </p>
                 </div>
 
@@ -301,7 +404,8 @@
                         <i class="fa-solid fa-envelope-open-text text-brand-600"></i> Quando riceverò la tessera?
                     </h4>
                     <p class="text-sm text-slate-600">
-                        Il Consiglio Direttivo approverà la richiesta nella prima seduta utile e riceverai la conferma ufficiale e il numero di tessera socio via email.
+                        Il Consiglio Direttivo approverà la richiesta nella prima seduta utile e riceverai la conferma
+                        ufficiale e il numero di tessera socio via email.
                     </p>
                 </div>
             </div>
@@ -309,27 +413,36 @@
     </main>
 
     <!-- SUCCESS MODAL -->
-    <div id="success-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 text-center animate-fade-in">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+    <div id="success-modal"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div
+            class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 text-center animate-fade-in">
+            <div
+                class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                 <i class="fa-solid fa-circle-check"></i>
             </div>
             <h3 class="text-2xl font-bold text-slate-900 mb-2">Iscrizione Registrata!</h3>
             <p class="text-sm text-slate-600 mb-6">
-                La tua richiesta è stata trasmessa con successo nel nostro database. Abbiamo inviato un'email di benvenuto all'indirizzo inserito.
+                La tua richiesta è stata trasmessa con successo nel nostro database. Abbiamo inviato un'email di
+                benvenuto all'indirizzo inserito.
             </p>
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-left mb-6 space-y-2 text-xs text-slate-700">
-                <p><strong>ID socio generato:</strong> <span id="modal-socio-id" class="font-mono text-brand-600">--</span></p>
-                <p><strong>Cosa fare ora?</strong> Segui le istruzioni ricevute via email per completare il pagamento della quota di €36,00.</p>
+            <div
+                class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-left mb-6 space-y-2 text-xs text-slate-700">
+                <p><strong>ID socio generato:</strong> <span id="modal-socio-id"
+                        class="font-mono text-brand-600">--</span></p>
+                <p><strong>Cosa fare ora?</strong> Segui le istruzioni ricevute via email per completare il pagamento
+                    della quota di €36,00.</p>
             </div>
-            <button onclick="closeModal()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-lg text-sm transition-colors shadow-sm">
+            <button onclick="closeModal()"
+                class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-lg text-sm transition-colors shadow-sm">
                 Torna alla Home
             </button>
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm w-full bg-slate-900 text-white p-4 rounded-xl shadow-xl flex items-center space-x-3 border border-slate-800">
+    <div id="toast"
+        class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm w-full bg-slate-900 text-white p-4 rounded-xl shadow-xl flex items-center space-x-3 border border-slate-800">
         <div id="toast-icon" class="text-rose-400 text-lg">
             <i class="fa-solid fa-circle-exclamation"></i>
         </div>
@@ -342,7 +455,8 @@
         <div class="max-w-6xl mx-auto px-4 text-center space-y-2">
             <p class="font-semibold text-slate-300">Salvati Per Servire ODV Onlus</p>
             <p>Sede legale e operativa - Codice Fiscale ONLUS / Registro Terzo Settore</p>
-            <p class="text-slate-500">© 2026 Salvati Per Servire ODV Onlus. Tutti i diritti riservati. Sviluppato per la massima sicurezza GDPR.</p>
+            <p class="text-slate-500">© 2026 Salvati Per Servire ODV Onlus. Tutti i diritti riservati. Sviluppato per la
+                massima sicurezza GDPR.</p>
         </div>
     </footer>
 
@@ -376,7 +490,7 @@
             for (let i = 1; i <= 3; i++) {
                 const stepNum = document.getElementById(`step-num-${i}`);
                 const stepIndicator = document.getElementById(`step-indicator-${i}`);
-                
+
                 if (i === currentTab) {
                     stepNum.className = "w-8 h-8 rounded-full border-2 border-brand-600 text-brand-600 font-semibold text-sm flex items-center justify-center bg-white shadow-sm";
                 } else if (i < currentTab) {
@@ -429,7 +543,7 @@
             const input = document.getElementById('codice_fiscale');
             const errSpan = document.getElementById('err-codice_fiscale');
             const val = input.value.trim().toUpperCase();
-            
+
             if (val.length !== 16) {
                 errSpan.classList.remove('hidden');
                 input.classList.add('border-rose-400');
@@ -444,7 +558,7 @@
             const input = document.getElementById('email');
             const errSpan = document.getElementById('err-email');
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
+
             if (!emailPattern.test(input.value.trim())) {
                 errSpan.classList.remove('hidden');
                 input.classList.add('border-rose-400');
@@ -456,7 +570,7 @@
         }
 
         // Form Submit Event Handler
-        document.getElementById('registration-form').addEventListener('submit', async function(e) {
+        document.getElementById('registration-form').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             if (!validateTab(1) || !validateTab(2)) {
@@ -481,7 +595,6 @@
                 document.getElementById('err-accetta_statuto').classList.add('hidden');
             }
 
-            // Payload formatting according to Backend Pydantic Schema
             const payload = {
                 nome: document.getElementById('nome').value.trim(),
                 cognome: document.getElementById('cognome').value.trim(),
@@ -495,8 +608,10 @@
                 provincia: document.getElementById('provincia').value.trim().toUpperCase(),
                 email: document.getElementById('email').value.trim(),
                 telefono: document.getElementById('telefono').value.trim(),
-                consenso_privacy: privacy,
-                consenso_foto: document.getElementById('consenso_foto').checked
+                // Allineati con i campi richiesti dal Pydantic Model del backend:
+                accetta_statuto: document.getElementById('accetta_statuto') ? document.getElementById('accetta_statuto').checked : true,
+                consenso_dati_personali: document.getElementById('consenso_dati_personali') ? document.getElementById('consenso_dati_personali').checked : true,
+                consenso_foto: document.getElementById('consenso_foto') ? document.getElementById('consenso_foto').checked : false
             };
 
             setLoading(true);
@@ -577,4 +692,5 @@
         }
     </script>
 </body>
+
 </html>
