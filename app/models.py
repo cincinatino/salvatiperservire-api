@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from sqlalchemy import Column, Integer, String, Date, Numeric, Boolean, DateTime, Text
 from datetime import datetime
 from .database import Base
@@ -38,4 +39,15 @@ class SocioModel(Base):
     consenso_dati_personali = Column(Boolean, default=False)
     consenso_newsletter = Column(Boolean, default=False)
     
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    hashed_password = Column(String, nullable=True)  # Nullable per consentire futuri Social Login senza password
+    is_active = Column(Boolean, default=True)
+    is_superuser = Column(Boolean, default=False)
+    role = Column(String, default="socio")  # "socio", "admin", ecc.
     created_at = Column(DateTime, default=datetime.utcnow)
