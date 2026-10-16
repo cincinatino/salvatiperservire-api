@@ -14,6 +14,18 @@ class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
 
+@router.get("/me")
+def read_users_me(current_user: models.User = Depends(deps.get_current_user)):
+    """
+    Restituisce le informazioni dell'utente attualmente autenticato tramite JWT
+    """
+    return {
+        "id": current_user.id,
+        "email": current_user.email,
+        "is_active": current_user.is_active,
+        "role": getattr(current_user, "role", "socio")
+    }
+
 @router.post("/login", response_model=Token)
 def login_access_token(
     db: Session = Depends(deps.get_db),
