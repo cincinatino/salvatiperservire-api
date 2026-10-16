@@ -13,13 +13,6 @@ def login_access_token(
     db: Session = Depends(deps.get_db),
     form_data: OAuth2PasswordRequestForm = Depends()
 ):
-
-""" @router.post("/login", response_model=schemas.Token)
-def login_access_token(
-    db: Session = Depends(get_db),
-    form_data: OAuth2PasswordRequestForm = Depends()
-): """
-    # ... resto del codice ...
     """
     OAuth2 compatible token login, get an access token for future requests
     """
