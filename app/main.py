@@ -6,7 +6,7 @@ from .schemas import SocioCreate
 from .email import invia_email_benvenuto, invia_notifica_admin
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from app.api.v1.endpoints import auth  #
+from app.api.v1.endpoints import auth
 # Monta la cartella static
 #app.mount("/static", StaticFiles(directory="static"), name="static")
 
