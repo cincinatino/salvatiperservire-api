@@ -1,14 +1,20 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+from pydantic import BaseModel
 
-from app import models, schemas
+from app import models
 from app.api import deps
 from app.core import security
 
 router = APIRouter()
 
-@router.post("/login", response_model=schemas.Token)
+# Schema Pydantic per il Token JWT
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+@router.post("/login", response_model=Token)
 def login_access_token(
     db: Session = Depends(deps.get_db),
     form_data: OAuth2PasswordRequestForm = Depends()
