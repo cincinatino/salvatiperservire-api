@@ -29,6 +29,11 @@ services:
       - POSTGRES_DB=salvatiperservire
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d salvatiperservire"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:
