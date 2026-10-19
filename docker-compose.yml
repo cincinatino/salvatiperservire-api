@@ -15,7 +15,8 @@ services:
       - SMTP_PASSWORD=jqbi pdkd obsm bscq
       - ADMIN_EMAIL=john.vera1@gmail.com
     depends_on:
-      - db
+      db:
+        condition: service_healthy  
 
   db:
     image: postgres:15-alpine
