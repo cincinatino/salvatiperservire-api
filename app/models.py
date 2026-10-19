@@ -51,3 +51,14 @@ class User(Base):
     is_superuser = Column(Boolean, default=False)
     role = Column(String, default="socio")  # "socio", "admin", ecc.
     created_at = Column(DateTime, default=datetime.utcnow)
+# Campi Anagrafici & Profilo (Fase 2 / Area Riservata)
+    nome = Column(String, nullable=True)
+    cognome = Column(String, nullable=True)
+    codice_fiscale = Column(String, unique=True, index=True, nullable=True)
+    telefono = Column(String, nullable=True)
+    citta = Column(String, nullable=True)
+    chiesa = Column(String, nullable=True)
+    foto_tessera_url = Column(String, nullable=True)
+    profilo_completato = Column(Boolean, default=False)
+    
+    created_at = Column(DateTime, default=datetime.utcnow)

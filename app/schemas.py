@@ -2,6 +2,38 @@ from pydantic import BaseModel, EmailStr, Field
 from datetime import date
 from typing import Optional
 
+# Schema per la Pre-Registrazione (Fase 1)
+class UserCreate(BaseModel):
+    email: EmailStr
+    password: str
+    nome: str
+    cognome: str
+    chiesa: Optional[str] = None
+    citta: Optional[str] = None
+
+# Schema per il completamento del profilo nell'Area Riservata (Fase 2)
+class UserProfileUpdate(BaseModel):
+    nome: Optional[str] = None
+    cognome: Optional[str] = None
+    codice_fiscale: Optional[str] = None
+    telefono: Optional[str] = None
+    citta: Optional[str] = None
+    chiesa: Optional[str] = None
+
+# Schema di risposta per i dati dell'utente
+class UserResponse(BaseModel):
+    id: int
+    email: EmailStr
+    nome: Optional[str] = None
+    cognome: Optional[str] = None
+    citta: Optional[str] = None
+    chiesa: Optional[str] = None
+    profilo_completato: bool
+    role: str
+
+    class Config:
+        from_attributes = True
+    
 class SocioCreate(BaseModel):
     cognome: str
     nome: str
