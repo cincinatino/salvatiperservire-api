@@ -17,7 +17,7 @@ async def update_user_profile(
     telefono: Optional[str] = Form(None),
     citta: Optional[str] = Form(None),
     chiesa: Optional[str] = Form(None),
-    foto_tessera: Optional[UploadFile] = File(None),
+    foto_tessera: UploadFile = File(None),  # <-- Definido sin Optional para que Swagger muestre el selector de archivos
     db: Session = Depends(deps.get_db),
     current_user: models.User = Depends(deps.get_current_user)
 ):
@@ -51,11 +51,10 @@ async def update_user_profile(
         current_user.codice_fiscale = codice_fiscale
 
     # 3. Gestione e salvataggio della Foto Tessera
-    if foto_tessera:
+    if foto_tessera and foto_tessera.filename:
         upload_dir = "app/static/uploads"
         os.makedirs(upload_dir, exist_ok=True)
 
-        # Mantiene l'estensione originale (.jpg, .png, ecc.)
         extension = foto_tessera.filename.split(".")[-1] if "." in foto_tessera.filename else "jpg"
         filename = f"user_{current_user.id}_tessera.{extension}"
         file_path = os.path.join(upload_dir, filename)
