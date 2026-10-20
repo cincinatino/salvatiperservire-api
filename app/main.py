@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks
 from sqlalchemy.orm import Session
 from .database import engine, Base, get_db
@@ -6,42 +7,36 @@ from .schemas import SocioCreate
 from .email import invia_email_benvenuto, invia_notifica_admin
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from app.api.v1.endpoints import auth
-# Monta la cartella static
-#app.mount("/static", StaticFiles(directory="static"), name="static")
 
-#@app.get("/")
-#def read_root():
-#    return FileResponse("static/index.html")
+from app.api.v1.endpoints import auth, users
 
-
-# Crea le tabelle nel database all'avvio
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Salvati Per Servire - WebApp", version="1.0.0")
 
-# Router di autenticazione
+os.makedirs("app/static/uploads", exist_ok=True)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Autenticazione"])
+app.include_router(users.router, prefix="/api/v1/users", tags=["Utenti e Profilo (Fase 2)"])
 
 @app.get("/")
 def read_root():
     return FileResponse("static/index.html")
-#    return {"message": "API Backend di Salvati Per Servire ODV Onlus attiva e funzionante!"}
 
 @app.post("/api/soci/", status_code=201)
 def registra_socio(socio: SocioCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
-    # 1. Verifica se il codice fiscale esiste già
+    # erifica se il codice fiscale esiste già
     esistente = db.query(SocioModel).filter(SocioModel.codice_fiscale == socio.codice_fiscale).first()
     if esistente:
         raise HTTPException(status_code=400, detail="Un socio con questo Codice Fiscale è già registrato.")
     
-    # 2. Inserimento nel database
+   
     nuovo_socio = SocioModel(**socio.model_dump())
     db.add(nuovo_socio)
     db.commit()
     db.refresh(nuovo_socio)
     
-    # 3. Accodamento dell'invio email in background
     background_tasks.add_task(
         invia_email_benvenuto, 
         socio_email=nuovo_socio.email, 

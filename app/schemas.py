@@ -2,6 +2,10 @@ from pydantic import BaseModel, EmailStr, Field
 from datetime import date
 from typing import Optional
 
+# ---------------------------------------------------------
+# Schemi per l'Autenticazione e Gestione Utenti (Fase 1 & Fase 2)
+# ---------------------------------------------------------
+
 # Schema per la Pre-Registrazione (Fase 1)
 class UserCreate(BaseModel):
     email: EmailStr
@@ -20,20 +24,27 @@ class UserProfileUpdate(BaseModel):
     citta: Optional[str] = None
     chiesa: Optional[str] = None
 
-# Schema di risposta per i dati dell'utente
+# Schema di risposta esteso per i dati dell'utente (inclusi foto e codice fiscale)
 class UserResponse(BaseModel):
     id: int
     email: EmailStr
     nome: Optional[str] = None
     cognome: Optional[str] = None
+    codice_fiscale: Optional[str] = None
+    telefono: Optional[str] = None
     citta: Optional[str] = None
     chiesa: Optional[str] = None
+    foto_tessera_url: Optional[str] = None
     profilo_completato: bool
     role: str
 
     class Config:
         from_attributes = True
-    
+
+
+# ---------------------------------------------------------
+# Schema Legacy / Completo per la registrazione cartacea dei soci
+# ---------------------------------------------------------
 class SocioCreate(BaseModel):
     cognome: str
     nome: str
