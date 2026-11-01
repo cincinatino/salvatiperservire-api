@@ -25,8 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- FASE 1: REGISTRAZIONE ---
+    // document.getElementById("form-register").addEventListener("submit", async (e) => {
+    //     e.preventDefault();
     document.getElementById("form-register").addEventListener("submit", async (e) => {
         e.preventDefault();
+        const submitBtn = e.target.querySelector("button[type='submit']");
+        submitBtn.disabled = true;
         const payload = {
             nome: document.getElementById("reg-nome").value,
             cognome: document.getElementById("reg-cognome").value,
