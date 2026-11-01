@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const userEmailDisplay = document.getElementById("user-email-display");
     const alertContainer = document.getElementById("alert-container");
 
+    // Placeholder SVG di default per l'avatar vuoto
+    const DEFAULT_AVATAR = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 24 24' fill='none' stroke='%23ccc' stroke-width='1.5'><circle cx='12' cy='8' r='4'/><path d='M4 20c0-4 4-6 8-6s8 2 8 6'/></svg>";
+
     // Inizializzazione: Controlla se c'è un Token in localStorage
     const token = localStorage.getItem("jwt_token");
     if (token) {
@@ -25,12 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- FASE 1: REGISTRAZIONE ---
-    // document.getElementById("form-register").addEventListener("submit", async (e) => {
-    //     e.preventDefault();
     document.getElementById("form-register").addEventListener("submit", async (e) => {
         e.preventDefault();
         const submitBtn = e.target.querySelector("button[type='submit']");
         submitBtn.disabled = true;
+
         const payload = {
             nome: document.getElementById("reg-nome").value,
             cognome: document.getElementById("reg-cognome").value,
@@ -50,16 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!res.ok) throw new Error(data.detail || "Errore durante la registrazione");
 
-            // showAlert("Registrazione avvenuta con successo! Ora puoi effettuare l'accesso.", "success");
-            // // Passa alla scheda Login
-            // const loginTab = new bootstrap.Tab(document.getElementById("login-tab"));
-            // loginTab.show();
             showAlert("Registrazione avvenuta con successo! Ora puoi effettuare l'accesso.", "success");
             // Passa alla scheda Login simulando il click in modo nativo
             document.getElementById("login-tab").click();
-
         } catch (err) {
             showAlert(err.message, "danger");
+        } finally {
+            submitBtn.disabled = false; // Riabilita sempre il pulsante
         }
     });
 
@@ -118,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("prof-citta").value = user.citta || "";
             document.getElementById("prof-chiesa").value = user.chiesa || "";
 
-            // Badge e Foto
+            // Badge e Stato Profilo
             const badge = document.getElementById("badge-stato-profilo");
             if (user.profilo_completato) {
                 badge.className = "badge bg-success px-3 py-2 rounded-pill";
@@ -128,8 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 badge.textContent = "Profilo Incompleto";
             }
 
+            // Gestione Foto Profilo (Fix ereditarietà foto tra utenti)
+            const imgPreview = document.getElementById("img-preview");
             if (user.foto_tessera_url) {
-                document.getElementById("img-preview").src = user.foto_tessera_url;
+                // Aggiungiamo timestamp per evitare cache aggressiva del browser
+                imgPreview.src = `${user.foto_tessera_url}?t=${new Date().getTime()}`;
+            } else {
+                imgPreview.src = DEFAULT_AVATAR;
             }
 
         } catch (err) {
@@ -167,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch(`${API_BASE}/api/v1/users/me/profile`, {
                 method: "PUT",
                 headers: { "Authorization": `Bearer ${currentToken}` },
-                body: formData // Note: NON impostiamo 'Content-Type', lo fa il browser in automatico per il multipart
+                body: formData
             });
 
             const data = await res.json();
@@ -183,6 +187,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- LOGOUT ---
     function logout() {
         localStorage.removeItem("jwt_token");
+
+        // Pulisci i form e resetta l'anteprima della foto
+        document.getElementById("form-profile").reset();
+        document.getElementById("form-login").reset();
+        document.getElementById("form-register").reset();
+        document.getElementById("img-preview").src = DEFAULT_AVATAR;
+
         authSection.classList.remove("d-none");
         profileSection.classList.add("d-none");
         navUserInfo.classList.add("d-none");
@@ -190,10 +201,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.getElementById("btn-logout").addEventListener("click", logout);
-});
 
-// Aggiungi questo in fondo a app/static/js/app.js per forzare il cambio tab
-document.addEventListener("DOMContentLoaded", () => {
+    // --- GESTIONE TAB LOGIN / REGISTRAZIONE ---
     const registerTabBtn = document.getElementById("register-tab");
     const loginTabBtn = document.getElementById("login-tab");
     const registerPanel = document.getElementById("register-panel");
