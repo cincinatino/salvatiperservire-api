@@ -20,9 +20,12 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Autenticazione"])
 app.include_router(users.router, prefix="/api/v1/users", tags=["Utenti e Profilo (Fase 2)"])
 
+# @app.get("/")
+# def read_root():
+#     return FileResponse("static/index.html")
 @app.get("/")
 def read_root():
-    return FileResponse("static/index.html")
+    return FileResponse("app/static/index.html")
 
 @app.post("/api/soci/", status_code=201)
 def registra_socio(socio: SocioCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
