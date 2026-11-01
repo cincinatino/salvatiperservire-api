@@ -50,10 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!res.ok) throw new Error(data.detail || "Errore durante la registrazione");
 
+            // showAlert("Registrazione avvenuta con successo! Ora puoi effettuare l'accesso.", "success");
+            // // Passa alla scheda Login
+            // const loginTab = new bootstrap.Tab(document.getElementById("login-tab"));
+            // loginTab.show();
             showAlert("Registrazione avvenuta con successo! Ora puoi effettuare l'accesso.", "success");
-            // Passa alla scheda Login
-            const loginTab = new bootstrap.Tab(document.getElementById("login-tab"));
-            loginTab.show();
+            // Passa alla scheda Login simulando il click in modo nativo
+            document.getElementById("login-tab").click();
+
         } catch (err) {
             showAlert(err.message, "danger");
         }
