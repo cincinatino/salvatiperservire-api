@@ -183,3 +183,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("btn-logout").addEventListener("click", logout);
 });
+
+// Aggiungi questo in fondo a app/static/js/app.js per forzare il cambio tab
+document.addEventListener("DOMContentLoaded", () => {
+    const registerTabBtn = document.getElementById("register-tab");
+    const loginTabBtn = document.getElementById("login-tab");
+    const registerPanel = document.getElementById("register-panel");
+    const loginPanel = document.getElementById("login-panel");
+
+    if (registerTabBtn && loginTabBtn) {
+        registerTabBtn.addEventListener("click", () => {
+            registerTabBtn.classList.add("active");
+            loginTabBtn.classList.remove("active");
+            registerPanel.classList.add("show", "active");
+            loginPanel.classList.remove("show", "active");
+        });
+
+        loginTabBtn.addEventListener("click", () => {
+            loginTabBtn.classList.add("active");
+            registerTabBtn.classList.remove("active");
+            loginPanel.classList.add("show", "active");
+            registerPanel.classList.remove("show", "active");
+        });
+    }
+});
