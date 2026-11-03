@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function caricaProfiloUtente() {
         const currentToken = localStorage.getItem("jwt_token");
         try {
-            const res = await fetch(`${API_BASE}/api/v1/auth/me`, {
+            const res = await fetch(`${API_BASE}/api/v1/users/me`, {
                 headers: { "Authorization": `Bearer ${currentToken}` }
             });
 
